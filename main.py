@@ -25,7 +25,7 @@ def open_browser_and_process(url):
 
     # Явное ожидание загрузки элемента с классом "price-block__final-price.wallet"
     try:
-        elem = WebDriverWait(driver, 10).until(
+        elem = WebDriverWait(driver, 40).until(
             EC.visibility_of_element_located((By.CLASS_NAME, "price-block__final-price.wallet"))
         )
     except TimeoutException:
