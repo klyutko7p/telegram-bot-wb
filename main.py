@@ -23,20 +23,22 @@ def open_browser_and_process(url):
     # Открытие веб-страницы
     driver.get(url)
 
-    # Явное ожидание загрузки элемента с классом "price-block__final-price.wallet"
     try:
-        elem = WebDriverWait(driver, 40).until(
-            EC.visibility_of_element_located((By.CLASS_NAME, "price-block__final-price.wallet"))
+        header_element = WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located((By.TAG_NAME, "h1"))
         )
-    except TimeoutException:
-        print("Время ожидания истекло. Элемент не найден.")
+        header_text = header_element.text
+        print("Текст заголовка страницы:", header_text)
+
+        # Извлечение текста элемента
+        text = header_element.text
+
+        # Возвращаем извлеченный текст
+        return text
+
+    except Exception as e:
+        print("Ошибка при поиске заголовка страницы:", e)
         return None
-
-    # Извлечение текста элемента
-    text = elem.text
-
-    # Возвращаем извлеченный текст
-    return text
 
 
 # Инициализация бота
