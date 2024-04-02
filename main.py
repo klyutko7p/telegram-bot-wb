@@ -25,7 +25,7 @@ def open_browser_and_process(url):
 
     try:
         header_element = WebDriverWait(driver, 10).until(
-            EC.visibility_of_element_located((By.TAG_NAME, "h1"))
+            EC.visibility_of_element_located((By.TAG_NAME, "ins"))
         )
         header_text = header_element.text
         print("Текст заголовка страницы:", header_text)
