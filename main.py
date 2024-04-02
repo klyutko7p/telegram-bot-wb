@@ -48,6 +48,9 @@ bot = TeleBot('7185448364:AAFKMQUW1Z6_oJcOYnK8MxTbSLES-yiDlK0')
 def handle_start(message):
     bot.send_message(message.chat.id,
                      "Привет! Отправь мне сообщение с текстом '/get_price [ссылка]', чтобы получить цену товара.")
+    driver.get("https://www.python.org")
+    title = driver.title
+    bot.send_message(message.chat.id, f"Заголовок страницы Python.org: {title}")
 
 
 # Обработчик команды '/get_price'
