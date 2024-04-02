@@ -16,7 +16,7 @@ chrome_options.add_argument("--no-sandbox")
 chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
 
 driver = webdriver.Chrome(options=chrome_options)
-
+print("Браузер успешно открыт")
 
 # Функция для открытия браузера и выполнения процедуры
 def open_browser_and_process(url):
@@ -75,6 +75,13 @@ def handle_get_price(message):
 @bot.message_handler(func=lambda message: True)
 def handle_invalid(message):
     bot.reply_to(message, "Неизвестная команда. Используйте '/start' для начала.")
+
+
+@bot.message_handler(commands=['check_browser'])
+def handle_check_browser(message):
+    driver.get("https://www.python.org")
+    title = driver.title
+    bot.send_message(message.chat.id, f"Заголовок страницы Python.org: {title}")
 
 
 # Запуск бота
