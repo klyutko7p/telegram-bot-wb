@@ -7,13 +7,13 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from telebot import TeleBot
+import os
 
-# Опции для запуска в headless-режиме
-options = Options()
-options.headless = True
-
-# Инициализация драйвера Selenium для Chrome с использованием опций
-driver = webdriver.Chrome(options=options)
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_argument("--headless")
+chrome_options.add_argument("--disable-dev-shm-usage")
+chrome_options.add_argument("--no-sandbox")
+driver = webdriver.Chrome(options=chrome_options)
 
 
 # Функция для открытия браузера и выполнения процедуры
