@@ -1,13 +1,7 @@
-import re
-
-from httpcore import TimeoutException
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from telebot import TeleBot
-import os
+from selenium.webdriver.support.ui import WebDriverWait
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument("--headless")
@@ -21,6 +15,10 @@ print("Браузер успешно открыт")
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
+
+@app.route('/')
+def home_view():
+    return "<h1>Welcome to Geeks for Geeks</h1>"
 
 
 @app.route('/post_endpoint', methods=['POST'])
@@ -44,5 +42,3 @@ def handle_post():
     return jsonify(response_data)
 
 
-if __name__ == '__main__':
-    app.run(debug=True)
