@@ -26,9 +26,9 @@ app = Flask(__name__)
 @app.route('/post_endpoint', methods=['POST'])
 def handle_post():
     url = request.json
-    print(url)
+    print(url.url)
 
-    driver.get(url)
+    driver.get(url.url)
 
     try:
         price_element = WebDriverWait(driver, 10).until(
