@@ -24,17 +24,20 @@ def open_browser_and_process(url):
     driver.get(url)
 
     try:
-        header_element = WebDriverWait(driver, 10).until(
+        price_element = WebDriverWait(driver, 10).until(
             EC.visibility_of_element_located((By.TAG_NAME, "ins"))
         )
-        header_text = header_element.text
-        print("Текст заголовка страницы:", header_text)
+
+        title_element = WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located((By.TAG_NAME, "h1"))
+        )
 
         # Извлечение текста элемента
-        text = header_element.text
+        price = price_element.text
+        title = title_element.text
 
         # Возвращаем извлеченный текст
-        return text
+        return title, price
 
     except Exception as e:
         print("Ошибка при поиске заголовка страницы:", e)
@@ -50,9 +53,6 @@ bot = TeleBot('7185448364:AAFKMQUW1Z6_oJcOYnK8MxTbSLES-yiDlK0')
 def handle_start(message):
     bot.send_message(message.chat.id,
                      "Привет! Отправь мне сообщение с текстом '/get_price [ссылка]', чтобы получить цену товара.")
-    driver.get("https://www.python.org")
-    title = driver.title
-    bot.send_message(message.chat.id, f"Заголовок страницы Python.org: {title}")
 
 
 # Обработчик команды '/get_price'
@@ -66,11 +66,11 @@ def handle_get_price(message):
     if url_match:
         url = url_match.group(1)  # Извлекаем ссылку из сообщения
         # Открываем браузер и получаем цену товара
-        text = open_browser_and_process(url)
-        if text:
-            bot.send_message(message.chat.id, f"Цена товара: {text}")
+        price, title = open_browser_and_process(url)
+        if price and title:
+            bot.send_message(message.chat.id, f"Цена товара: {price}\nНазвание товара: {title}")
         else:
-            bot.send_message(message.chat.id, "Не удалось получить цену товара.")
+            bot.send_message(message.chat.id, "Не удалось получить информацию о товаре.")
     else:
         bot.send_message(message.chat.id,
                          "Не найдена ссылка на товар. Пожалуйста, отправьте ссылку в формате: /get_price [ссылка]")
