@@ -66,8 +66,8 @@ def handle_get_price(message):
     if url_match:
         url = url_match.group(1)  # Извлекаем ссылку из сообщения
         # Открываем браузер и получаем цену товара
-        price, title = open_browser_and_process(url)
-        if price and title:
+        title, price = open_browser_and_process(url)
+        if title and price:
             bot.send_message(message.chat.id, f"Цена товара: {price}\nНазвание товара: {title}")
         else:
             bot.send_message(message.chat.id, "Не удалось получить информацию о товаре.")
