@@ -26,10 +26,10 @@ app = Flask(__name__)
 def handle_post():
     url = request.json['url']
     print(url)
+    driver.implicitly_wait(10)
+    driver.get(url)
 
     try:
-        driver.implicitly_wait(5)
-        driver.get(url)
         price_element = driver.find_elements(By.TAG_NAME, "ins")[1].text
         price = price_element.text
 
