@@ -44,6 +44,3 @@ def handle_post():
 
     response_data = {'status': 'success', 'message': f'{price}'}
     return jsonify(response_data)
-
-
-
