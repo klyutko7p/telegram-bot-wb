@@ -38,8 +38,5 @@ def handle_post():
         print("Ошибка при поиске заголовка страницы:", e)
         return None
 
-    finally:
-        driver.quit()
-
     response_data = {'status': 'success', 'message': f'{price}'}
     return jsonify(response_data)
