@@ -32,7 +32,6 @@ def handle_post():
         driver.get(url)
         price_element = driver.find_elements(By.TAG_NAME, "ins")[1].text
         price = price_element.text
-        return price_element
 
 
     except Exception as e:
