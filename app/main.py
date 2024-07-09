@@ -30,7 +30,7 @@ def handle_post():
     driver.get(url)
     
     try:    
-        price_element = driver.find_elements(By.TAG_NAME, "ins")[2].text
+        price_element = driver.find_elements(By.TAG_NAME, "ins")[0].text
         price = price_element
 
 
