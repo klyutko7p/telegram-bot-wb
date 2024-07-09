@@ -22,22 +22,17 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-@app.route('/')
-def home_view():
-    return "<h1>Welcome to Geeks for Geeks</h1>"
-
 @app.route('/post_endpoint', methods=['POST'])
 def handle_post():
     url = request.json['url']
     print(url)
 
-    driver.implicitly_wait(5)
-    driver.get(url)
-
     try:
-        price_element = driver.find_elements(By.TAG_NAME, "ins")[1]
-
+        driver.implicitly_wait(5)
+        driver.get(url)
+        price_element = driver.find_elements(By.TAG_NAME, "ins")[1].text
         price = price_element.text
+        return price_element
 
 
     except Exception as e:
