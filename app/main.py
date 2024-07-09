@@ -32,7 +32,7 @@ def handle_post():
 
     try:
         price_element = WebDriverWait(driver, 10).until(
-            EC.visibility_of_element_located((By.TAG_NAME, "ins"))
+            EC.visibility_of_element_located((By.CLASS_NAME, "price-block__final-price"))
         )
 
         price = price_element.text
