@@ -28,18 +28,15 @@ def handle_post():
     print(url)
     driver.implicitly_wait(10)
     driver.get(url)
-
-    try:
+    
+    try:    
         price_element = driver.find_elements(By.TAG_NAME, "ins")[1].text
-        price = price_element.text
+        price = price_element
 
 
     except Exception as e:
         print("Ошибка при поиске заголовка страницы:", e)
         return None
-        
-    finally:
-        driver.quit()
 
     response_data = {'status': 'success', 'message': f'{price}'}
     return jsonify(response_data)
