@@ -22,6 +22,9 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
+@app.route('/')
+def home_view():
+    return "<h1>Welcome to Geeks for Geeks</h1>"
 
 @app.route('/post_endpoint', methods=['POST'])
 def handle_post():
@@ -32,7 +35,7 @@ def handle_post():
 
     try:
         price_element = WebDriverWait(driver, 10).until(
-            EC.visibility_of_element_located((By.CLASS_NAME, "price-block__final-price"))
+            EC.visibility_of_element_located((By.TAG_NAME, "ins"))
         )
 
         price = price_element.text
