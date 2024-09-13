@@ -26,8 +26,8 @@ app = Flask(__name__)
 def handle_post():
     url = request.json['url']
     print(url)
-    time.sleep(8)
     driver.get(url)
+    time.sleep(8)
     
     try:    
         price_element = driver.find_elements(By.CLASS_NAME, "price-block__final-price")[1].text
