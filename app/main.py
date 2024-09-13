@@ -26,7 +26,7 @@ app = Flask(__name__)
 def handle_post():
     url = request.json['url']
     print(url)
-    driver.implicitly_wait(10)
+    time.sleep(8)
     driver.get(url)
     
     try:    
